@@ -1,11 +1,15 @@
 import { readFileSync } from 'fs';
+import dotenv from 'dotenv';
+
+// Lade .env Datei zuerst
+dotenv.config();
 
 let keys = {};
 try {
     const data = readFileSync('./keys.json', 'utf8');
     keys = JSON.parse(data);
 } catch (err) {
-    console.warn('keys.json not found. Defaulting to environment variables.'); // still works with local models
+    console.warn('keys.json not found. Using environment variables instead.'); // still works with local models
 }
 
 export function getKey(name) {
@@ -14,7 +18,7 @@ export function getKey(name) {
         key = process.env[name];
     }
     if (!key) {
-        throw new Error(`API key "${name}" not found in keys.json or environment variables!`);
+        throw new Error(`API key "${name}" not found in keys.json, .env or environment variables!`);
     }
     return key;
 }
