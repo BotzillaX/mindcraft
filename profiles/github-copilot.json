@@ -1,0 +1,12 @@
+{
+    "name": "andy",
+    
+    "model": {
+        "api": "github-copilot",
+        "model": "gpt-4o",
+        "params": {
+            "temperature": 0.7,
+            "max_tokens": 4096
+        }
+    }
+}
